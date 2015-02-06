@@ -35,7 +35,6 @@ bot.stream('user', function (stream) {
 			qs.search(input, function (res) {
 				if (res[1] < THRESHOLD) {
 					var tweet = format(user_id, res[0]);
-					fs.appendFile(REPLY_LOG, JSON.stringify(obj) + '\n');
 					bot.post('statuses/update', {
 						status: tweet,
 						in_reply_to_status_id: status_id
