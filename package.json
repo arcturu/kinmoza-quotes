@@ -1,0 +1,21 @@
+{
+  "name": "kinmoza_quotes",
+  "version": "1.0.0",
+  "description": "Find tweets which are similar to words appeared in kinmoza, and reply specific quotation.",
+  "main": "twio.js",
+  "dependencies": {
+    "date-utils": "^1.2.16",
+    "lodash": "^3.1.0",
+    "twitter": "^1.2.1"
+  },
+  "devDependencies": {
+    "date-utils": "^1.2.16",
+    "lodash": "^3.1.0",
+    "twitter": "^1.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "arcturu",
+  "license": "MIT"
+}
