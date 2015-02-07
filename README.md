@@ -4,7 +4,8 @@ twitter streaming api 経由でツイートを取得して、そのツイート�
 
 実行するには json/ ディレクトリを作り、その下に quotes.json, scenes.json, persons.json, keys.json を以下のフォーマットで作成してください。
 
-```js quotes.json
+quotes.json
+```js 
 [{
 	"text": "hogehoge",
 	"person_id": 1,
@@ -17,14 +18,16 @@ twitter streaming api 経由でツイートを取得して、そのツイート�
 }]
 ```
 
-```js scenes.json
+scenes.json
+```js 
 {
 	"3": "hoge scene",
 	"90": "fuga scene"
 }
 ```
 
-```js persons.json
+persons.json
+```js
 {
 	"1": "hoger",
 	"9": "fugar"
@@ -33,7 +36,8 @@ twitter streaming api 経由でツイートを取得して、そのツイート�
 
 twitter developer なんとかのページで取得するやつ
 
-```js keys.json
+keys.json
+```js
 {
 	"consumer_key": "***************",
 	"consumer_secret": "***************",
