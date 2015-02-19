@@ -72,8 +72,8 @@ var net = require('net'),
 					var d = new Date();
 					res = [lookup(quotes[res[0]]), res[1]];
 					socket.write(JSON.stringify([arr[0], res]) + '\0');
-					buff = '';
 					utils.log(SEARCH_LOG, [buff, res]);
+					buff = '';
 				} else {
 					buff += input[i];
 				}

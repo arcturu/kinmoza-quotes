@@ -26,7 +26,7 @@ qs.connect();
 
 bot.stream('user', function (stream) {
 	stream.on('error', function (e) {
-		utils.log(TWITTER_LOG, data);
+		utils.log(TWITTER_LOG, e);
 	});
 	stream.on('data', function (data) {
 		var user_id = data.user && data.user.screen_name;
