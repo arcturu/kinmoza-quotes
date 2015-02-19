@@ -1,5 +1,4 @@
 var _ = require('lodash')._,
-	fs = require('fs'),
 	quotes = require('./json/quotes.json'),
 	scenes = require('./json/scenes.json'),
 	persons = require('./json/persons.json'),
@@ -73,8 +72,8 @@ var net = require('net'),
 					var d = new Date();
 					res = [lookup(quotes[res[0]]), res[1]];
 					socket.write(JSON.stringify([arr[0], res]) + '\0');
-					fs.appendFile(SEARCH_LOG, d.toFormat('YYYY/MM/DD/ HH24:MI:SS') + '\t' + buff + '\t' + JSON.stringify(res) + '\n');
 					buff = '';
+					utils.log(SEARCH_LOG, [buff, res]);
 				} else {
 					buff += input[i];
 				}

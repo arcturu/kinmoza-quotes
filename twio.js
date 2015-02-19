@@ -1,10 +1,10 @@
 var twitter = require('twitter'),
-	fs = require('fs'),
 	qs = require('./qs'), // quote search
 	utils = require('./utils'),
 	keys = require('./json/keys');
 require('date-utils');
 
+const TWITTER_LOG       = './log/twitter.log';
 const ERROR_LOG         = './log/error.log';
 const REPLY_LOG         = './log/reply.log';
 const MY_ID             = 'kinmoza_quotes';
@@ -25,12 +25,16 @@ bot = new twitter(keys);
 qs.connect();
 
 bot.stream('user', function (stream) {
+	stream.on('error', function (e) {
+		utils.log(TWITTER_LOG, data);
+	});
 	stream.on('data', function (data) {
 		var user_id = data.user && data.user.screen_name;
 		var status_id = data.id_str;
 		var input = data.text;
 		var is_retweet = data.retweeted_status !== undefined;
 		var is_reply = data.in_reply_to_user_id !== null;
+		utils.log(TWITTER_LOG, data);
 		if (user_id !== MY_ID && !is_retweet && !is_reply) {
 			qs.search(input, function (res) {
 				if (res[1] < THRESHOLD) {
@@ -38,16 +42,8 @@ bot.stream('user', function (stream) {
 					bot.post('statuses/update', {
 						status: tweet,
 						in_reply_to_status_id: status_id
-					}, function (e, data) {
-						var obj = {};
-						obj.time = (new Date()).toFormat('YYYY/MM/DD/ HH24:MI:SS');
-						if (e) {
-							obj.error = e;
-							fs.appendFile(ERROR_LOG, JSON.stringify(obj) + '\n');
-						} else {
-							obj.data = data;
-							fs.appendFile(REPLY_LOG, JSON.stringify(obj) + '\n');
-						}
+					}, function (e, data) { // result of post
+						utils.log(ERROR_LOG, e || data);
 					});
 				}
 			});
